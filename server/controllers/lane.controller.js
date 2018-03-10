@@ -30,3 +30,16 @@ export function getLanes(req, res) {
     res.json({ lanes });
   });
 }
+
+// delete lane
+export function deleteLane(req, res) {
+  Lane.findOne({ id: req.params.laneId }).exec((err, lane) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+
+    lane.remove(() => {
+      res.status(200).end();
+    });
+  });
+}
