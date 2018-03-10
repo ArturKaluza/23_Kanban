@@ -10,4 +10,12 @@ const laneSchema = new Schema({
     usePushEach: true, 
   });
 
+function populateNotes(next) {
+  this.populate('notes');
+  next();
+}
+  
+laneSchema.pre('find', populateNotes);
+laneSchema.pre('findOne', populateNotes);
+
 export default mongoose.model('Lane', laneSchema);

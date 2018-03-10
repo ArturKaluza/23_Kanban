@@ -43,3 +43,19 @@ export function deleteLane(req, res) {
     });
   });
 }
+
+// edit name
+export function editName(req, res) {
+  Lane.findOne({ id: req.params.laneId }).exec((err, lane) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    lane.name = req.body.name;
+    lane.save((error, saved) => {
+      if (error) {
+        res.status(500).send(error);
+      }
+      res.json(saved);
+    });
+  });
+}
