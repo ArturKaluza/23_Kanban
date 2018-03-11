@@ -31,52 +31,25 @@ export function addNote(req, res) {
   });
 }
 
-/*
-// delete note
-export function deleteNote(req, res) {
-  Lane.findOne({ id: req.params.laneId })
-    .then(() => {
-      Note.findOne({ id: req.params.noteId })
-        .then(note => note.remove());
-    }).save(() => {
-      res.status(200).end();
-    });
-}
-*/
-
-// delete note
-export function deleteNote(req, res) {
-  Lane.findOne({ id: req.params.laneId }).exec((err, lane) => {
-    if (err) {
-      res.status(500).send(err);
-    }
-    lane.notes.find({ id: req.params.noteId }).exec((error, note) => {
-      if (error) {
-        res.status(500).send(error);
-      }
-      note.remove();
-      return lane.save();
-    });
-  });
-}
-
-
-/*
 // edit note
 export function editNote(req, res) {
-  Note.findOne({ id: req.params.noteId }).exec((err, note) => {
-    if (err) {
-      res.status(500).send(err);
-    }
-    note.task = req.body.task;
-    note.save((error, saved) => {
-      if (error) {
-        res.status(500).send(error);
-      }
-      res.json(saved);
-    });
+  if (!req.params.noteId && !req.body.task) res.status(400).end();
+    
+  Note.findOneAndUpdate({ id: req.params.noteId }, { task: req.body.task }).exec((err, note) => {
+    if (err) res.status(500).send(err);
+    note.save();
+    res.status(204).end();
   });
 }
-*/
 
-
+// delete note
+export function deleteNote(req, res) {
+  Note.findOneAndRemove({ id: req.params.noteId }).exec((err, note) => {
+    Lane.findOne({ id: req.params.laneId }).exec((er, lane) => {
+      const currentNote = lane.notes.indexOf(lane.notes.find(thisNote => thisNote.id === req.params.noteId));
+      lane.notes.splice(currentNote, 1);
+    });
+    if (!note) res.status(500).end();
+  });
+  res.status(200).end();
+}
