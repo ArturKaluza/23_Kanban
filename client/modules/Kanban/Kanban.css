@@ -1,1 +1,33 @@
 /* Kanban styles */
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin-ext');
+
+.Board {
+    min-height: 90vh;
+    background: #61C4B1;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+.Title {
+    padding: 30px 0;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 40px;
+}
+
+.AddLane {
+    width: 120px;
+    height: 40px;
+    background: #906FCB;
+    margin: 5px 0 25px 15px;
+    line-height: 40px;
+    font-size: 20px;
+    border: 1px solid black;
+    border-radius: 6px;
+    transition: .2s ease;
+}
+
+.AddLane:hover {
+    background: #67499B;
+    color: #f4f4f4;
+}

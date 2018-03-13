@@ -3,7 +3,7 @@ import { CREATE_LANE, UPDATE_LANE, DELETE_LANE, EDIT_LANE } from './LaneActions'
 import { CREATE_NOTE, DELETE_NOTE } from '../Note/NoteActions';
 
 // Initial State
-const initialState = {};
+const initialState = [];
 
 const LaneReducer = (state = initialState, action) => {
   switch (action.type) {

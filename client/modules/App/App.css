@@ -1,6 +1,14 @@
+
+.body {
+  height: 100vh;
+  background: #6F87CA;
+  
+}
+
 .container {
-  max-width: 980px;
+  max-width: 1400px;
   width: 100%;
+  margin: auto;
   padding: 15px;
-  margin: 0 auto;
+    
 }

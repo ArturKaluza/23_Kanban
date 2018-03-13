@@ -8,11 +8,7 @@ const mapStateToProps = (state, ownProps) => {
     laneNotes: ownProps.lane.notes.map(noteId => state.notes.find(note => note.id === noteId))
   };
 };
-/*
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-*/
+
 const mapDispatchToProps = {
     ...laneActions,
     addNote: createNote,

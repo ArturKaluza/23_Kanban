@@ -1,4 +1,41 @@
 /* Note styles */
 .Note {
-    background: blue;
+    height: 40px;
+    list-style-type: none;
+}
+
+.Note div div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+    background: #495E99;
+    color: #f4f4f4;
+}
+
+.Note span {
+    font-size: 20px;
+    line-height: 40px;
+    padding-left: 5px;
+}
+
+.Note button {
+    width: 20px;
+    height: 20px;
+    margin-right: 3px;
+    background: #A6373F;
+    border: 1px solid black;
+    border-radius: 15%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.Note button:hover {
+    background: #6D1C22;
+    color: #f4f4f4
+}
+
+li:last-of-type {
+    margin-bottom: 5px;
 }
