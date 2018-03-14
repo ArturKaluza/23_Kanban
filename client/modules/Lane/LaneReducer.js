@@ -31,11 +31,9 @@ const LaneReducer = (state = initialState, action) => {
       });
 
     case DELETE_NOTE:
-      console.log(action);
       return state.map(lane => {
-        console.log(lane);
         if (lane.id === action.laneId) {
-          const notes = lane.notes.filter(note => note.id !== action.noteId);
+          const notes = lane.notes.filter(note => note !== action.noteId);
           return { ...lane, notes };
         }
         return lane;
@@ -44,10 +42,8 @@ const LaneReducer = (state = initialState, action) => {
     case EDIT_LANE:
       return state.map(lane => {
         if (lane.id === action.laneId) {
-          console.log('edit');
           return Object.assign({}, lane, { editing: true });
         }
-        console.log(state);
         return lane;
       });
 
