@@ -15,16 +15,12 @@ export default function notes(state = initialState, action) {
       });
 
     case DELETE_NOTE:
+      console.log('delete note');
       return state.filter((note) => note.id !== action.noteId);
 
     case EDIT_NOTE:
-      return state.map(note => {
-        if (note.id === action.id) {
-          return Object.assign({}, note, { editing: true });
-        }
-        return note;
-      });
-
+      return state.map(note => note.id === action.noteId ? { ...note, editing: true } : note);
+        
     default:
       return state;
   }

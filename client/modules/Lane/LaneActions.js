@@ -13,6 +13,7 @@ export function createLane(lane) {
       lane: {
         id: uuid(),
         notes: [],
+        editing: false,
         ...lane,
       }
     };
@@ -38,3 +39,4 @@ export function editLane(laneId) {
     laneId
   };
 }
+

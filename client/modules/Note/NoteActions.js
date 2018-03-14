@@ -14,6 +14,7 @@ export function createNote(note, laneId) {
       laneId,
       note: {
         id: uuid(),
+        editing: false,
         ...note,
       },
     };

@@ -11,9 +11,11 @@ const LaneReducer = (state = initialState, action) => {
       return [...state, action.lane];
 
     case UPDATE_LANE:
+      console.log(action);
       return state.map(lane => {
+        console.log('update')
         if (lane.id === action.id) {
-          return Object.assign({}, lane, action.lane);
+          return Object.assign({}, lane, action.lane.name, { editing: false });
         }
         return lane;
       });
@@ -31,9 +33,11 @@ const LaneReducer = (state = initialState, action) => {
       });
 
     case DELETE_NOTE:
+      console.log(action);
       return state.map(lane => {
-        if (lane.id === action.id) {
-          const notes = lane.notes.filter(note => note.id !== action.note.id);
+        console.log(lane);
+        if (lane.id === action.laneId) {
+          const notes = lane.notes.filter(note => note.id !== action.noteId);
           return { ...lane, notes };
         }
         return lane;
@@ -41,12 +45,13 @@ const LaneReducer = (state = initialState, action) => {
 
     case EDIT_LANE:
       return state.map(lane => {
-        if (lane.id === action.id) {
+        if (lane.id === action.laneId) {
+          console.log('edit');
           return Object.assign({}, lane, { editing: true });
         }
+        console.log(state);
         return lane;
       });
-
 
     default:
       return state;
