@@ -11,7 +11,7 @@ export default function notes(state = initialState, action) {
 
     case UPDATE_NOTE:
       return state.map((note) => {
-        return note.id === action.id ? { ...note, ...action.note } : note;
+        return note.id === action.note.id ? { ...note, ...action.note } : note;
       });
 
     case DELETE_NOTE:

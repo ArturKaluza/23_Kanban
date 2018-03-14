@@ -11,11 +11,9 @@ const LaneReducer = (state = initialState, action) => {
       return [...state, action.lane];
 
     case UPDATE_LANE:
-      console.log(action);
       return state.map(lane => {
-        console.log('update')
-        if (lane.id === action.id) {
-          return Object.assign({}, lane, action.lane.name, { editing: false });
+        if (lane.id === action.lane.id) {
+          return Object.assign({}, lane, action.lane);
         }
         return lane;
       });
