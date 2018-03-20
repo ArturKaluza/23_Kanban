@@ -4,7 +4,7 @@ import styles from './Notes.css';
 import Edit from '../../components/Edit';
 
 
-const Notes = ({ notes, laneId, editNote, updateNote, deleteNote }) => {
+const Notes = ({ notes, laneId, editNote, updateNote, deleteNoteRequest }) => {
   return (<ul className={styles.notes}>{notes.map((note) =>
     <Note
       id={note.id}
@@ -21,7 +21,7 @@ const Notes = ({ notes, laneId, editNote, updateNote, deleteNote }) => {
           editing: false,
       }
     )}
-        onDelete={() => deleteNote(note.id, laneId)}
+        onDelete={() => deleteNoteRequest(note.id, laneId)}
       />
     </Note>
   )}</ul>);
@@ -33,6 +33,7 @@ Notes.propTypes = {
   laneId: PropTypes.string,
   editNote: PropTypes.func,
   notes: PropTypes.array,
+  deleteNoteRequest: PropTypes.func,
 };
 
 export default Notes;

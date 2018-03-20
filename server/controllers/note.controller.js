@@ -45,10 +45,6 @@ export function editNote(req, res) {
 // delete note
 export function deleteNote(req, res) {
   Note.findOneAndRemove({ id: req.params.noteId }).exec((err, note) => {
-    Lane.findOne({ id: req.params.laneId }).exec((er, lane) => {
-      const currentNote = lane.notes.indexOf(lane.notes.find(thisNote => thisNote.id === req.params.noteId));
-      lane.notes.splice(currentNote, 1);
-    });
     if (!note) res.status(500).end();
   });
   res.status(200).end();

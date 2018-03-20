@@ -12,6 +12,7 @@ export const CREATE_NOTES = 'CREATE_NOTES';
 // Export Actions
 
 export function createNote(note, laneId) {
+  console.log('create note');
   return {
     type: CREATE_NOTE,
     laneId,
@@ -20,6 +21,7 @@ export function createNote(note, laneId) {
  }
  
  export function createNoteRequest(note, laneId) {
+   console.log('add note');
    return (dispatch) => {
      return callApi('notes', 'post', { note, laneId }).then(noteResp => {
        dispatch(createNote(noteResp, laneId));
@@ -40,6 +42,15 @@ export function deleteNote(noteId, laneId) {
     noteId,
     laneId,
   };
+}
+
+export function deleteNoteRequest(noteId, laneId) {
+  console.log('note: ' + noteId);
+  return (dispatch => {
+    return callApi(`notes/${noteId}`, 'delete').then(() => {
+      dispatch(deleteNote(noteId, laneId));
+    });
+  })
 }
 
 export function editNote(noteId) {
