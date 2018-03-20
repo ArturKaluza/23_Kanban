@@ -21,7 +21,7 @@ export default class Edit extends Component {
 
   renderValue = () => {
     const { value, onDelete, onValueClick } = this.props;
-  
+    
     return (
       <div>
         <span className={styles.value} onClick={onValueClick}>{value}</span>
@@ -31,16 +31,16 @@ export default class Edit extends Component {
   }
 
   renderEdit = () => {
-   return (
-     <input
-       type="text"
-       autoFocus
-       defaultValue={this.props.value}
-       onBlur={this.finishEdit}
-       onKeyPress={this.checkEnter}
-     />
+    return (
+      <input
+        type="text"
+        autoFocus
+        defaultValue={this.props.value}
+        onBlur={this.finishEdit}
+        onKeyPress={this.checkEnter}
+      />
    );
- }
+  }
 
   render() {
     return (
