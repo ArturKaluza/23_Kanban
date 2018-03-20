@@ -13,7 +13,6 @@ export const CREATE_LANES = 'CREATE_LANES';
 
 // Export Actions
 export function createLane(lane) {
-  console.log('bez req');
   return {
     type: CREATE_LANE,
     lane: {
@@ -26,7 +25,6 @@ export function createLane(lane) {
 
 // tworzenie nowej kolumny
 export function createLaneRequest(lane) {
-  console.log('req');
   return (dispatch) => {
     return callApi('lanes', 'post', lane).then(res => {
       dispatch(createLane(res));
@@ -43,9 +41,19 @@ export function updateLane(lane) {
 }
   
 export function deleteLane(laneId) {
+  console.log(laneId);
   return {
     type: DELETE_LANE,
     laneId
+  };
+}
+
+export function deleteLaneRequest(lane) {
+  console.log('hej delLaneReq');
+  return (dispatch) => {
+    return callApi(`lanes/${lane}`, 'delete').then(() => {
+      dispatch(deleteLane(lane));
+    });
   };
 }
 
