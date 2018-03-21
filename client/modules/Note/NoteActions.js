@@ -12,7 +12,6 @@ export const CREATE_NOTES = 'CREATE_NOTES';
 // Export Actions
 
 export function createNote(note, laneId) {
-  console.log('create note');
   return {
     type: CREATE_NOTE,
     laneId,
@@ -20,17 +19,15 @@ export function createNote(note, laneId) {
   };
  }
  
- export function createNoteRequest(note, laneId) {
-   console.log('add note');
-   return (dispatch) => {
-     return callApi('notes', 'post', { note, laneId }).then(noteResp => {
-       dispatch(createNote(noteResp, laneId));
-     });
-   };
- }
+export function createNoteRequest(note, laneId) {
+  return (dispatch) => {
+    return callApi('notes', 'post', { note, laneId }).then(noteResp => {
+      dispatch(createNote(noteResp, laneId));
+    });
+  };
+}
   
 export function updateNote(note) {
-  console.log('update note');
   return {
     type: UPDATE_NOTE,
     note,
@@ -38,10 +35,9 @@ export function updateNote(note) {
 }
   
 export function updateNoteRequest(note) {
-  console.log('update note req');
   return (dispatch) => {
-    return callApi('notes', 'put', {id: note.id, task: note.task }).then(noteResp => {
-      dispatch(updateNote(noteResp));
+    return callApi(`notes/${note.id}`, 'put', { task: note.task }).then(() => {
+      dispatch(updateNote(note));
     });
   }
 }
@@ -55,7 +51,6 @@ export function deleteNote(noteId, laneId) {
 }
 
 export function deleteNoteRequest(noteId, laneId) {
-  console.log('note: ' + noteId);
   return (dispatch => {
     return callApi(`notes/${noteId}`, 'delete').then(() => {
       dispatch(deleteNote(noteId, laneId));
