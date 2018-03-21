@@ -4,7 +4,7 @@ import styles from './Notes.css';
 import Edit from '../../components/Edit';
 
 
-const Notes = ({ notes, laneId, editNote, updateNote, deleteNoteRequest }) => {
+const Notes = ({ notes, laneId, editNote, updateNote, deleteNoteRequest, updateNoteRequest }) => {
   return (<ul className={styles.notes}>{notes.map((note) =>
     <Note
       id={note.id}
@@ -34,6 +34,7 @@ Notes.propTypes = {
   editNote: PropTypes.func,
   notes: PropTypes.array,
   deleteNoteRequest: PropTypes.func,
+  updateNoteRequest: PropTypes.func,
 };
 
 export default Notes;

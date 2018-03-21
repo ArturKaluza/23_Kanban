@@ -9,6 +9,7 @@ export default function notes(state = initialState, action) {
   switch (action.type) {
     case CREATE_NOTE:
     case UPDATE_NOTE:
+      console.log('reducer');
       return { ...state, [action.note.id]: action.note };
     case EDIT_NOTE: {
       const note = { ...state[action.id], editing: true };

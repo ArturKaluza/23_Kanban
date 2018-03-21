@@ -39,9 +39,17 @@ export function updateLane(lane) {
     lane,
   };
 }
-  
+
+// akltualizacja kolumny po stronie serwera
+export function updateLaneRequest(lane) {
+  return (dispatch) => {
+    return callApi(`lanes/${lane.id}`, 'put', { name: lane.name }).then(() => {
+      dispatch(updateLane(lane));
+    })
+  }
+}
+
 export function deleteLane(laneId) {
-  console.log(laneId);
   return {
     type: DELETE_LANE,
     laneId
@@ -49,7 +57,6 @@ export function deleteLane(laneId) {
 }
 
 export function deleteLaneRequest(lane) {
-  console.log('hej delLaneReq');
   return (dispatch) => {
     return callApi(`lanes/${lane}`, 'delete').then(() => {
       dispatch(deleteLane(lane));

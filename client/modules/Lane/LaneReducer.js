@@ -12,8 +12,8 @@ export default function lanes(state = initialState, action) {
      return { ...state, [action.lane.id]: action.lane };
 
    case EDIT_LANE: {
-     const lane = { ...state[action.id], editing: true };
-     return { ...state, [action.id]: lane };
+     const lane = { ...state[action.laneId], editing: true };
+     return { ...state, [action.laneId]: lane };
    }
 
    case CREATE_LANES:
